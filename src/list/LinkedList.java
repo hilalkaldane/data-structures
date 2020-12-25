@@ -20,8 +20,7 @@ public class LinkedList<T> {
 	{
 		if(head==null)
 		{
-			head.next=null;
-			head.data=data;
+			head=new Node<>(data);
 		}
 		else
 		{
@@ -39,7 +38,7 @@ public class LinkedList<T> {
 		if(head!=null)
 		{
 			Node current=head;
-			while(current.next!=null) {
+			while(current!=null) {
 				System.out.println(current.data);
 				current=current.next;
 			}
