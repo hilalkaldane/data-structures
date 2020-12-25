@@ -1,3 +1,5 @@
+package list;
+
 public class LinkedList<T> {
 	private Node<T> head;
 	static class Node<T>
