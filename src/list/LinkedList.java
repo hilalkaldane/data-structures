@@ -34,7 +34,7 @@ public class LinkedList<T> {
 
 		}
 	}
-	void forEach()
+	public void forEach()
 	{
 		if(head!=null)
 		{
