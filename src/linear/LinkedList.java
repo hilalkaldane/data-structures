@@ -1,4 +1,4 @@
-package list;
+package linear;
 
 public class LinkedList<T> {
 	private Node<T> head;
@@ -27,8 +27,11 @@ public class LinkedList<T> {
 
 	public LinkedList() {
 	}
-
-	public void add(T data) {
+	public void add(T data)
+	{
+		addLast(data);
+	}
+	public void addLast(T data) {
 		if (head == null) {
 			head = new Node<>(data);
 			size++;
@@ -42,6 +45,21 @@ public class LinkedList<T> {
 			size++;
 		}
 	}
+	public void addFirst(T data)
+	{
+	if(head==null)
+	{
+		head = new Node<>(data);
+		size++;
+	}
+	else
+	{
+		Node<T> firstNode= new Node<>(data);
+		firstNode.next=head;
+		head=firstNode;
+		size++;
+	}
+	}
 
 	public void forEach() {
 		if (head != null) {
@@ -53,11 +71,13 @@ public class LinkedList<T> {
 		}
 	}
 
-	public boolean removeElementAt(int position) {
+	public T removeElementAt(int position) {
 		if (head != null) {
 			if (position == 0) {
+				Node<T> toReturn=head;
 				head = head.next;
-				return true;
+				size--;
+				return toReturn.data;
 			}
 			else {
 				if (position < size) {
@@ -66,20 +86,48 @@ public class LinkedList<T> {
 						current = current.next;
 					}
 					if (null != current.next.next) {
+						Node<T> toReturn = current.next;
 						current.next = current.next.next;
-						return true;
+						size--;
+						return toReturn.data;
 					}
 					else {
-						return false;
+						return null;
 					}
 				}
 				else {
-					return false;
+					return null;
 				}
 			}
 		}
 		else {
-			return false;
+			return null;
+		}
+	}
+	public int size()
+	{
+		return this.size;
+	}
+	public T getElementAt(int position)
+	{
+		if(head!=null) {
+			Node<T> current=head;
+			while (position != 0&& position<size) {
+				current=current.next;
+				position--;
+			}
+			if(position>=size)
+			{
+				return null;
+			}
+			else
+			{
+				return current.data;
+			}
+		}
+		else
+		{
+			return null;
 		}
 	}
 }
